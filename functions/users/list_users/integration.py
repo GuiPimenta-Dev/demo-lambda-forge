@@ -2,7 +2,7 @@ import pytest
 import requests
 
 
-@pytest.mark.integration(method="GET", endpoint="/user")
+@pytest.mark.integration(method="GET", endpoint="/users")
 def test_list_users_status_code_is_200():
 
     response = requests.get(url="")

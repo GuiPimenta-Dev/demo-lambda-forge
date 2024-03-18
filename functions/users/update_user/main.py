@@ -6,7 +6,7 @@ import boto3
 
 @dataclass
 class Path:
-    user_id: str
+    id: str
 
 
 @dataclass
@@ -19,7 +19,7 @@ class Input:
 class Output:
     message: str
 
-
+#
 def lambda_handler(event, context):
     USERS_TABLE = os.environ.get("USERS_TABLE")
     dynamodb = boto3.resource("dynamodb")

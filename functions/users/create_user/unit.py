@@ -10,4 +10,4 @@ def test_lambda_handler(users_table):
 
     user = users_table.get_item(Key={"PK": response["id"]})["Item"]
     assert user["name"] == "John"
-    assert user["age"] == 30e
+    assert user["age"] == 30
