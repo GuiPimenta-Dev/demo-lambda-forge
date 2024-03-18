@@ -40,6 +40,6 @@ class DevStack(cdk.Stack):
         validate_integration_tests = steps.validate_integration_tests()
         validate_docs = steps.validate_docs()
         coverage = steps.run_coverage()
-        generate_docs = steps.generate_docs()
+        generate_docs = steps.generate_docs(name, stage)
 
         pipeline.add_stage(DeployStage(self, stage, context["arns"]), pre=[unit_tests, coverage, validate_docs, generate_docs, validate_integration_tests])
