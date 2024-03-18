@@ -24,7 +24,7 @@ def lambda_handler(event, context):
     dynamodb = boto3.resource("dynamodb")
     users_table = dynamodb.Table(USERS_TABLE)
 
-    user_id = event["pathParameters"].get("user_id")
+    user_id = event["pathParameters"].get("id")
     users_table.delete_item(Key={"PK": user_id})
 
     return {"statusCode": 200, "body": json.dumps({"message": "User deleted"})}

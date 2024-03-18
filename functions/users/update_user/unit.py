@@ -9,7 +9,7 @@ def test_lambda_handler(users_table):
     
     event = {
             "pathParameters": {
-                "user_id": user_id
+                "id": user_id
             },
             "body": json.dumps({"name": "John Doe", "age": 31})
      }

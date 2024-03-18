@@ -25,7 +25,7 @@ def lambda_handler(event, context):
     dynamodb = boto3.resource("dynamodb")
     users_table = dynamodb.Table(USERS_TABLE)
 
-    user_id = event["pathParameters"].get("user_id")
+    user_id = event["pathParameters"].get("id")
     body = json.loads(event["body"])
     users_table.put_item(Item={"PK": user_id, "name": body["name"], "age": body["age"]})
 

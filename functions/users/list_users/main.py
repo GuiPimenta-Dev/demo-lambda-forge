@@ -26,5 +26,5 @@ def lambda_handler(event, context):
     users_table = dynamodb.Table(USERS_TABLE)
 
     users = users_table.scan()["Items"]
-
+    users = [{"id": user["PK"], "name": user["name"], "age": user["age"]} for user in users]
     return {"statusCode": 200, "body": json.dumps({"users": users}, default=str)}

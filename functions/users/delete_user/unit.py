@@ -10,7 +10,7 @@ def test_lambda_handler(users_table):
 
     event = {
         "pathParameters": {
-            "user_id": user_id
+            "id": user_id
         }
     }
     lambda_handler(event, None)

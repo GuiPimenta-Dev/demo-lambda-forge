@@ -13,6 +13,6 @@ def test_lambda_handler(users_table):
 
     assert body == {
         "users": [
-            {"PK": user_id, "name": "Jhon Doe", "age": "30"}
+            {"id": user_id, "name": "Jhon Doe", "age": "30"}
         ]
     }

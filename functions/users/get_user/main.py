@@ -25,7 +25,7 @@ def lambda_handler(event, context):
     dynamodb = boto3.resource("dynamodb")
     users_table = dynamodb.Table(USERS_TABLE)
 
-    user_id = event["pathParameters"].get("user_id")
+    user_id = event["pathParameters"].get("id")
     user = users_table.get_item(Key={"PK": user_id}).get("Item")
 
     user = { "id": user["PK"], "name": user["name"], "age": user["age"]}
