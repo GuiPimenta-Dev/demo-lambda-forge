@@ -28,4 +28,5 @@ def lambda_handler(event, context):
     user_id = event["pathParameters"].get("user_id")
     user = users_table.get_item(Key={"PK": user_id}).get("Item")
 
+    user = { "id": user["PK"], "name": user["name"], "age": user["age"]}
     return {"statusCode": 200, "body": json.dumps(user,  default=str)}
