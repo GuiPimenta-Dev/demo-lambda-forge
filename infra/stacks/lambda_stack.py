@@ -1,3 +1,5 @@
+from functions.user.update_user.config import UpdateUserConfig
+from functions.user.create_user.config import CreateUserConfig
 from functions.authorizers.auth.config import AuthConfig
 from functions.private.config import PrivateConfig
 from functions.public.config import PublicConfig
@@ -34,3 +36,7 @@ class LambdaStack(Stack):
 
         # Private
         PrivateConfig(self.services)
+
+        # User
+        UpdateUserConfig(self.services)
+        CreateUserConfig(self.services)
