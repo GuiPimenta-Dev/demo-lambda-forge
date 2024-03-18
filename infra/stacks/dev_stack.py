@@ -38,4 +38,4 @@ class DevStack(cdk.Stack):
         unit_tests = steps.run_unit_tests()
         validate_integration_tests = steps.validate_integration_tests()
 
-        pipeline.add_stage(DeployStage(self, stage, context["arns"]), pre=[unit_tests])
+        pipeline.add_stage(DeployStage(self, stage, context["arns"]), pre=[unit_tests, validate_integration_tests])
