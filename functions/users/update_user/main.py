@@ -6,12 +6,13 @@ import boto3
 
 @dataclass
 class Path:
-    pass
+    user_id: str
 
 
 @dataclass
 class Input:
-    pass
+    name: str
+    age: int
 
 
 @dataclass
