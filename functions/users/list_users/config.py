@@ -6,7 +6,7 @@ class ListUsersConfig:
 
         function = services.aws_lambda.create_function(
             name="ListUsers",
-            path="./functions/user",
+            path="./functions/users",
             description="List all users",
             directory="list_users",
             environment={
@@ -16,4 +16,4 @@ class ListUsersConfig:
 
         services.api_gateway.create_endpoint("GET", "/users", function, public=True)
 
-        services.dynamodb.users_table.grant_read_write_data(function)
+        services.dynamo_db.users_table.grant_read_write_data(function)

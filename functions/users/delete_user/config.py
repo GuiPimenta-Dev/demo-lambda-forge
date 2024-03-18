@@ -6,7 +6,7 @@ class DeleteUserConfig:
 
         function = services.aws_lambda.create_function(
             name="DeleteUser",
-            path="./functions/user",
+            path="./functions/users",
             description="Delete an User",
             directory="delete_user",
             environment={
@@ -18,4 +18,4 @@ class DeleteUserConfig:
             "DELETE", "/users/{id}", function, public=True
         )
 
-        services.dynamodb.users_table.grant_read_write_data(function)
+        services.dynamo_db.users_table.grant_read_write_data(function)

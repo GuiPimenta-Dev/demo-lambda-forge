@@ -47,6 +47,6 @@ class LambdaStack(Stack):
         ListUsersConfig(self.services)
         GetUserConfig(self.services)
         UpdateUserConfig(self.services)
-        CreateUserConfig(self.services)
+        DeleteUserConfig(self.services)
 
 

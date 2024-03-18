@@ -6,7 +6,7 @@ class UpdateUserConfig:
 
         function = services.aws_lambda.create_function(
             name="UpdateUser",
-            path="./functions/user",
+            path="./functions/users",
             description="Update an User",
             directory="update_user",
             environment={
@@ -18,4 +18,4 @@ class UpdateUserConfig:
             "PUT", "/users/{id}", function, public=True
         )
 
-        services.dynamodb.users_table.grant_read_write_data(function)
+        services.dynamo_db.users_table.grant_read_write_data(function)

@@ -6,7 +6,7 @@ class CreateUserConfig:
 
         function = services.aws_lambda.create_function(
             name="CreateUser",
-            path="./functions/user",
+            path="./functions/users",
             description="Create a User",
             directory="create_user",
             environment={
@@ -16,4 +16,4 @@ class CreateUserConfig:
 
         services.api_gateway.create_endpoint("POST", "/users", function, public=True)
 
-        services.dynamodb.users_table.grant_read_write_data(function)
+        services.dynamo_db.users_table.grant_read_write_data(function)
