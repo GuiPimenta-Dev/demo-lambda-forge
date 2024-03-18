@@ -1,5 +1,6 @@
 from infra.services import Services
 
+
 class UpdateUserConfig:
     def __init__(self, services: Services) -> None:
 
@@ -7,9 +8,14 @@ class UpdateUserConfig:
             name="UpdateUser",
             path="./functions/user",
             description="Update an User",
-            directory="update_user"
+            directory="update_user",
+            environment={
+                "USERS_TABLE": services.dynamo_db.users_table.table_name,
+            },
         )
 
-        services.api_gateway.create_endpoint("PUT", "/user/{id}", function, public=True)
+        services.api_gateway.create_endpoint(
+            "PUT", "/users/{id}", function, public=True
+        )
 
-            
+        services.dynamodb.users_table.grant_read_write_data(function)

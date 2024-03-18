@@ -1,5 +1,6 @@
 from infra.services import Services
 
+
 class GetUserConfig:
     def __init__(self, services: Services) -> None:
 
@@ -7,9 +8,14 @@ class GetUserConfig:
             name="GetUser",
             path="./functions/user",
             description="Get an User",
-            directory="get_user"
+            directory="get_user",
+            environment={
+                "USERS_TABLE": services.dynamo_db.users_table.table_name,
+            },
         )
 
-        services.api_gateway.create_endpoint("GET", "/user/{id}", function, public=True)
+        services.api_gateway.create_endpoint(
+            "GET", "/users/{id}", function, public=True
+        )
 
-            
+        services.dynamodb.users_table.grant_read_write_data(function)

@@ -1,3 +1,6 @@
+from functions.user.list_users.config import ListUsersConfig
+from functions.user.delete_user.config import DeleteUserConfig
+from functions.user.get_user.config import GetUserConfig
 from functions.user.update_user.config import UpdateUserConfig
 from functions.user.create_user.config import CreateUserConfig
 from functions.authorizers.auth.config import AuthConfig
@@ -38,5 +41,8 @@ class LambdaStack(Stack):
         PrivateConfig(self.services)
 
         # User
+        CreateUserConfig(self.services)
+        ListUsersConfig(self.services)
+        GetUserConfig(self.services)
         UpdateUserConfig(self.services)
         CreateUserConfig(self.services)

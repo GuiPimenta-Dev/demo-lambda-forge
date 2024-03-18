@@ -1,5 +1,6 @@
 from infra.services import Services
 
+
 class AuthConfig:
     def __init__(self, services: Services) -> None:
 
@@ -7,7 +8,7 @@ class AuthConfig:
             name="Auth",
             path="./functions/authorizers",
             description="An authorizer for private lambda functions",
-            directory="auth"
+            directory="auth",
         )
 
         services.api_gateway.create_authorizer(function, name="auth", default=True)
