@@ -3,7 +3,7 @@ from aws_cdk import pipelines as pipelines
 from aws_cdk.pipelines import CodePipelineSource
 from constructs import Construct
 from infra.stages.deploy import DeployStage
-from lambda_forge.steps import Steps
+from lambda_forge import Steps
 
 class DevStack(cdk.Stack):
     def __init__(self, scope: Construct, **kwargs) -> None:
@@ -20,8 +20,8 @@ class DevStack(cdk.Stack):
                 "Synth",
                 input=source,
                 install_commands=[
+                    "pip install lambda-forge==1.0.64 --extra-index-url https://pypi.org/simple --extra-index-url https://test.pypi.org/simple/",
                     "pip install aws-cdk-lib",
-                    "pip install lambda-forge==1.0.63 --extra-index-url https://pypi.org/simple --extra-index-url https://test.pypi.org/simple/"
                     "npm install -g aws-cdk",
                 ],
                 commands=[
