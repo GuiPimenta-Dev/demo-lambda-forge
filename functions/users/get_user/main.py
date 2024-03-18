@@ -5,7 +5,7 @@ import boto3
 
 @dataclass
 class Path:
-    pass
+    user_id: str
 
 
 @dataclass
@@ -15,7 +15,9 @@ class Input:
 
 @dataclass
 class Output:
-    message: str
+    id: str
+    name: str
+    age: int
 
 
 def lambda_handler(event, context):

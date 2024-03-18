@@ -1,8 +1,9 @@
-from functions.user.list_users.config import ListUsersConfig
-from functions.user.delete_user.config import DeleteUserConfig
-from functions.user.get_user.config import GetUserConfig
-from functions.user.update_user.config import UpdateUserConfig
-from functions.user.create_user.config import CreateUserConfig
+from functions.docs.swagger.config import SwaggerConfig
+from functions.users.list_users.config import ListUsersConfig
+from functions.users.delete_user.config import DeleteUserConfig
+from functions.users.get_user.config import GetUserConfig
+from functions.users.update_user.config import UpdateUserConfig
+from functions.users.create_user.config import CreateUserConfig
 from functions.authorizers.auth.config import AuthConfig
 from functions.private.config import PrivateConfig
 from functions.public.config import PublicConfig
@@ -33,6 +34,7 @@ class LambdaStack(Stack):
 
         # Docs
         DocsConfig(scope, self.services)
+        SwaggerConfig(self.services)
 
         # Public
         PublicConfig(self.services)
@@ -46,3 +48,5 @@ class LambdaStack(Stack):
         GetUserConfig(self.services)
         UpdateUserConfig(self.services)
         CreateUserConfig(self.services)
+
+

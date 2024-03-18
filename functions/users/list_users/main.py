@@ -1,6 +1,7 @@
 import json
 from dataclasses import dataclass
 import os
+from typing import List
 import boto3
 
 @dataclass
@@ -9,8 +10,14 @@ class Input:
 
 
 @dataclass
+class User:
+    id: str
+    name: str
+    age: int
+
+@dataclass
 class Output:
-    message: str
+    users: List[User]
 
 
 def lambda_handler(event, context):

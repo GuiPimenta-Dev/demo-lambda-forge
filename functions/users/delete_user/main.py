@@ -6,7 +6,7 @@ import boto3
 
 @dataclass
 class Path:
-    pass
+    user_id: str
 
 
 @dataclass
