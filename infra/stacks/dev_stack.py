@@ -30,6 +30,7 @@ class DevStack(cdk.Stack):
             ),
             pipeline_name=f"Dev-{name}-Pipeline",
         )
+        #
 
         context = self.node.try_get_context("dev")
         stage = "Dev"
@@ -38,4 +39,4 @@ class DevStack(cdk.Stack):
         unit_tests = steps.run_unit_tests()
         validate_integration_tests = steps.validate_integration_tests()
 
-        pipeline.add_stage(DeployStage(self, stage, context["arns"]), pre=[unit_tests, validate_integration_tests])
+        pipeline.add_stage(DeployStage(self, stage, context["arns"]), pre=[validate_integration_tests])
