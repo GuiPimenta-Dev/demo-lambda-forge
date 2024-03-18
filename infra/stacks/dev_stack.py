@@ -3,7 +3,7 @@ from aws_cdk import pipelines as pipelines
 from aws_cdk.pipelines import CodePipelineSource
 from constructs import Construct
 from infra.stages.deploy import DeployStage
-
+from lambda_forge.steps import Steps
 
 class DevStack(cdk.Stack):
     def __init__(self, scope: Construct, **kwargs) -> None:
@@ -33,4 +33,7 @@ class DevStack(cdk.Stack):
         context = self.node.try_get_context("dev")
         stage = "Dev"
 
-        pipeline.add_stage(DeployStage(self, stage, context["arns"]))
+        steps = Steps(self, stage, source)
+        unit_tests = steps.run_unit_tests()
+
+        pipeline.add_stage(DeployStage(self, stage, context["arns"]), pre=[unit_tests])
