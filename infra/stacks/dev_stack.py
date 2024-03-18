@@ -20,7 +20,7 @@ class DevStack(cdk.Stack):
                 "Synth",
                 input=source,
                 install_commands=[
-                    "pip install lambda-forge==1.0.64 --extra-index-url https://pypi.org/simple --extra-index-url https://test.pypi.org/simple/",
+                    "pip install lambda-forge==1.0.66 --extra-index-url https://pypi.org/simple --extra-index-url https://test.pypi.org/simple/",
                     "pip install aws-cdk-lib",
                     "npm install -g aws-cdk",
                 ],
@@ -36,5 +36,6 @@ class DevStack(cdk.Stack):
 
         steps = Steps(self, stage, source)
         unit_tests = steps.run_unit_tests()
+        validate_integration_tests = steps.validate_integration_tests()
 
         pipeline.add_stage(DeployStage(self, stage, context["arns"]), pre=[unit_tests])
