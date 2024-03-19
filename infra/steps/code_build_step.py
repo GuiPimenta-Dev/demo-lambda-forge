@@ -1,9 +1,8 @@
-import os
 from aws_cdk import aws_codebuild as codebuild
 from aws_cdk import aws_iam as iam
 from aws_cdk import pipelines as pipelines
 from aws_cdk.pipelines import CodePipelineSource
-from lambda_forge.scripts import validate_integration_tests
+
 
 class CodeBuildStep:
     def __init__(self, scope, stage, source: CodePipelineSource):

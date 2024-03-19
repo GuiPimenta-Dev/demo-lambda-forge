@@ -43,24 +43,18 @@
     "name": "Demo-Lambda-Forge",
     "repo": {
       "owner": "GuiPimenta-Dev",
-      "name": "demo-lambda-forge"
+      "name": "crowdform"
     },
     "bucket": "gui-docs",
     "coverage": 80,
     "dev": {
-      "arns": {
-        "users_table": "arn:aws:dynamodb:us-east-2:211125768252:table/Dev-Users"
-      }
+      "arns": {}
     },
     "staging": {
-      "arns": {
-        "users_table": "arn:aws:dynamodb:us-east-2:211125768252:table/Staging-Users"
-      }
+      "arns": {}
     },
     "prod": {
-      "arns": {
-        "users_table": "arn:aws:dynamodb:us-east-2:211125768252:table/Prod-Users"
-      }
+      "arns": {}
     }
   }
 }

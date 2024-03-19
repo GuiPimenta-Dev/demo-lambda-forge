@@ -2,6 +2,7 @@ import dataclasses
 import importlib
 import json
 import re
+from lambda_forge.scripts import get_library_path
 
 
 def get_endpoints(functions, api_endpoints):
@@ -81,16 +82,10 @@ def validate_docs(endpoints, loader=default_module_loader):
 
 
 if __name__ == "__main__":
-    with open("cdk.json", "r") as json_file:
-        context = json.load(json_file)["context"]
-        arns = context["dev"]["arns"]
+    path = get_library_path("lambda_forge")
+    with open(f"{path}/functions.json", "r") as json_file:
+        functions = json.load(json_file)
+   
 
-    import aws_cdk as cdk
-    from infra.stacks.lambda_stack import LambdaStack
-
-    app = cdk.App()
-    services = LambdaStack(app, "Dev", arns).services
-    functions = services.aws_lambda.functions
-    api_endpoints = services.api_gateway.endpoints
-    endpoints = get_endpoints(functions, api_endpoints)
-    validate_docs(endpoints)
+    filtered_functions = [function for function in functions if function.get("method") is not None ]
+    validate_docs(filtered_functions)

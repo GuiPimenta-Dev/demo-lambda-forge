@@ -1,6 +1,7 @@
 import importlib
 import json
 from copy import deepcopy
+from lambda_forge.scripts import get_library_path
 
 import yaml
 
@@ -322,7 +323,7 @@ def default_module_loader(file_path):
     return importlib.import_module(file_path)
 
 
-def generate_docs(functions, api_endpoints, name, loader=default_module_loader):
+def generate_docs(endpoints, name, loader=default_module_loader):
 
     info = {
         "title": f"{name.title()} Docs",
@@ -330,7 +331,6 @@ def generate_docs(functions, api_endpoints, name, loader=default_module_loader):
         "version": "1.0.0",
     }
 
-    endpoints = get_endpoints(functions, api_endpoints)
     paths = get_paths(endpoints)
     schema = get_schema(endpoints, loader)
 
@@ -347,19 +347,20 @@ def generate_docs(functions, api_endpoints, name, loader=default_module_loader):
 
 
 if __name__ == "__main__":
-    import aws_cdk as cdk
 
-    from infra.stacks.lambda_stack import LambdaStack
+    print("running")
+    path = get_library_path("lambda_forge")
+    with open(f"{path}/functions.json", "r") as json_file:
+        functions = json.load(json_file)
 
     with open("cdk.json", "r") as json_file:
         context = json.load(json_file)["context"]
         name = context["name"]
-        arns = context["dev"]["arns"]
 
-    services = LambdaStack(cdk.App(), "Dev", arns).services
-    functions = services.aws_lambda.functions
-    api_endpoints = services.api_gateway.endpoints
 
-    spec = generate_docs(functions, api_endpoints, name)
+    filtered_functions = [function for function in functions if function.get("method") is not None ]
+
+
+    spec = generate_docs(functions, name)
     with open(r"docs.yaml", "w") as f:
         yaml.dump(spec, f, sort_keys=True)
