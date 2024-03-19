@@ -107,8 +107,6 @@ class CodeBuildStep:
         )
 
     def validate_integration_tests(self):
-        os.system("ls")
-        os.system(f"python {validate_integration_tests.__file__}")
         return pipelines.CodeBuildStep(
             "Validate Integration Tests",
             input=self.source,
