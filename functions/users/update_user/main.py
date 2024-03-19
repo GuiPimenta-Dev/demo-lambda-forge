@@ -19,6 +19,7 @@ class Input:
 class Output:
     message: str
 
+
 #
 def lambda_handler(event, context):
     USERS_TABLE = os.environ.get("USERS_TABLE")
@@ -29,5 +30,7 @@ def lambda_handler(event, context):
     body = json.loads(event["body"])
     users_table.put_item(Item={"PK": user_id, "name": body["name"], "age": body["age"]})
 
-    return {"statusCode": 200, "body": json.dumps({"message": "User updated"}, default=str)}
-
+    return {
+        "statusCode": 200,
+        "body": json.dumps({"message": "User updated"}, default=str),
+    }

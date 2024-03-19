@@ -4,9 +4,11 @@ import moto
 import boto3
 import pytest
 
+
 @pytest.fixture
 def env():
     os.environ["USERS_TABLE"] = "USERS_TABLE"
+
 
 @pytest.fixture
 def users_table(env):
@@ -25,6 +27,7 @@ def users_table(env):
 
         table = boto3.resource("dynamodb").Table("USERS_TABLE")
         yield table
+
 
 def pytest_generate_tests(metafunc):
     for mark in metafunc.definition.iter_markers(name="integration"):

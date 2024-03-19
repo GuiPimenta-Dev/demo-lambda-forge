@@ -28,4 +28,3 @@ def lambda_handler(event, context):
     users_table.delete_item(Key={"PK": user_id})
 
     return {"statusCode": 200, "body": json.dumps({"message": "User deleted"})}
-

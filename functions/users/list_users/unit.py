@@ -11,8 +11,4 @@ def test_lambda_handler(users_table):
 
     body = json.loads(response["body"])
 
-    assert body == {
-        "users": [
-            {"PK": user_id, "name": "Jhon Doe", "age": "30"}
-        ]
-    }
+    assert body == {"users": [{"PK": user_id, "name": "Jhon Doe", "age": "30"}]}

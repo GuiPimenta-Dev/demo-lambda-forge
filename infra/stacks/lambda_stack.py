@@ -13,7 +13,6 @@ from aws_cdk import Stack
 from constructs import Construct
 from infra.services import Services
 
-
 class LambdaStack(Stack):
     def __init__(
         self,
@@ -32,21 +31,19 @@ class LambdaStack(Stack):
         AuthConfig(self.services)
         DocsAuthorizerConfig(self.services)
 
-        # Docs
+        # # Docs
         DocsConfig(scope, self.services)
         SwaggerConfig(self.services)
 
-        # Public
+        # # Public
         PublicConfig(self.services)
 
-        # Private
+        # # Private
         PrivateConfig(self.services)
 
-        # User
+        # # User
         CreateUserConfig(self.services)
         ListUsersConfig(self.services)
         GetUserConfig(self.services)
         UpdateUserConfig(self.services)
         DeleteUserConfig(self.services)
-
-

@@ -5,6 +5,7 @@ from constructs import Construct
 from infra.stages.deploy import DeployStage
 from lambda_forge import Steps
 
+
 class DevStack(cdk.Stack):
     def __init__(self, scope: Construct, **kwargs) -> None:
         name = scope.node.try_get_context("name").title()
@@ -20,7 +21,7 @@ class DevStack(cdk.Stack):
                 "Synth",
                 input=source,
                 install_commands=[
-                    "pip install lambda-forge==1.0.76 --extra-index-url https://pypi.org/simple --extra-index-url https://test.pypi.org/simple/",
+                    "pip install lambda-forge==1.0.77 --extra-index-url https://pypi.org/simple --extra-index-url https://test.pypi.org/simple/",
                     "pip install aws-cdk-lib",
                     "npm install -g aws-cdk",
                 ],
@@ -30,7 +31,6 @@ class DevStack(cdk.Stack):
             ),
             pipeline_name=f"Dev-{name}-Pipeline",
         )
-        #
 
         context = self.node.try_get_context("dev")
         stage = "Dev"
@@ -42,4 +42,13 @@ class DevStack(cdk.Stack):
         coverage = steps.run_coverage()
         generate_docs = steps.generate_docs(name, stage)
 
-        pipeline.add_stage(DeployStage(self, stage, context["arns"]), pre=[unit_tests, coverage, validate_docs, generate_docs, validate_integration_tests])
+        pipeline.add_stage(
+            DeployStage(self, stage, context["arns"]),
+            pre=[
+                unit_tests,
+                coverage,
+                validate_docs,
+                generate_docs,
+                validate_integration_tests,
+            ],
+        )
