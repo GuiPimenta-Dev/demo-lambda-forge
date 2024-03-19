@@ -12,7 +12,6 @@ class DevStack(cdk.Stack):
         name = scope.node.try_get_context("name").title()
         super().__init__(scope, f"Dev-{name}-Stack", **kwargs)
 
-
         repo = self.node.try_get_context("repo")
         source = CodePipelineSource.git_hub(f"{repo['owner']}/{repo['name']}", "dev")
 
