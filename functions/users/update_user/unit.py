@@ -8,17 +8,11 @@ def test_lambda_handler(users_table):
     users_table.put_item(Item={"PK": user_id, "name": "Jhon Doe", "age": 30})
 
     event = {
-<<<<<<< HEAD
             "pathParameters": {
                 "id": user_id
             },
             "body": json.dumps({"name": "John Doe", "age": 31})
      }
-=======
-        "pathParameters": {"user_id": user_id},
-        "body": json.dumps({"name": "John Doe", "age": 31}),
-    }
->>>>>>> dev
     response = lambda_handler(event, None)
     response = json.loads(response["body"])
 
