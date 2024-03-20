@@ -1,8 +1,6 @@
 from aws_cdk import Duration
 from aws_cdk import aws_apigateway as apigateway
 from aws_cdk import aws_iam as iam
-from aws_cdk import aws_logs as logs
-from aws_cdk.aws_lambda import Code, Function, Runtime
 from lambda_forge import track
 
 class APIGateway:
