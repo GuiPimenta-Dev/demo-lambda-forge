@@ -52,6 +52,7 @@ class DevStack(cdk.Stack):
         pipeline.add_stage(
             DeployStage(self, stage, context["arns"]),
             pre=[
+                unit_tests,
                 coverage,
                 validate_docs,
                 generate_docs,
