@@ -1,3 +1,4 @@
+
 import aws_cdk as cdk
 from aws_cdk import pipelines as pipelines
 from aws_cdk.pipelines import CodePipelineSource
@@ -13,9 +14,7 @@ class StagingStack(cdk.Stack):
         super().__init__(scope, f"Staging-{name}-Stack", **kwargs)
 
         repo = self.node.try_get_context("repo")
-        source = CodePipelineSource.git_hub(
-            f"{repo['owner']}/{repo['name']}", "staging"
-        )
+        source = CodePipelineSource.git_hub(f"{repo['owner']}/{repo['name']}", "staging")
 
         pipeline = pipelines.CodePipeline(
             self,

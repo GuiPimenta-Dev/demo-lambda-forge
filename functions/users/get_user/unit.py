@@ -15,4 +15,4 @@ def test_lambda_handler(users_table):
     response = lambda_handler(event, None)
 
     body = json.loads(response["body"])
-    assert body == {"id": user_id, "name": "Jhon Doe", "age": '30'}
+    assert body == {"id": user_id, "name": "Jhon Doe", "age": "30"}

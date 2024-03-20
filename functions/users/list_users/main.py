@@ -4,6 +4,7 @@ import os
 from typing import List
 import boto3
 
+
 @dataclass
 class Input:
     pass
@@ -14,6 +15,7 @@ class User:
     id: str
     name: str
     age: int
+
 
 @dataclass
 class Output:
