@@ -5,7 +5,7 @@ from aws_cdk.pipelines import CodePipelineSource
 from constructs import Construct
 
 from infra.stages.deploy import DeployStage
-from infra.steps.code_build_step import CodeBuildStep
+from lambda_forge import Steps
 
 
 class StagingStack(cdk.Stack):
@@ -23,6 +23,7 @@ class StagingStack(cdk.Stack):
                 "Synth",
                 input=source,
                 install_commands=[
+                    "pip install lambda-forge==1.0.166 --extra-index-url https://pypi.org/simple --extra-index-url https://test.pypi.org/simple",
                     "pip install aws-cdk-lib",
                     "npm install -g aws-cdk",
                 ],
@@ -36,7 +37,7 @@ class StagingStack(cdk.Stack):
         context = self.node.try_get_context("staging")
         stage = "Staging"
 
-        code_build = CodeBuildStep(self, stage, source)
+        code_build = Steps(self, stage, source)
 
         # pre
         unit_tests = code_build.run_unit_tests()
