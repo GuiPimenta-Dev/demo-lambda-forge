@@ -40,7 +40,7 @@
     "@aws-cdk/customresources:installLatestAwsSdkDefault": false,
     "region": "us-east-2",
     "account": "",
-    "name": "Test",
+    "name": "Demo-Lambda-Forge",
     "repo": {
       "owner": "GuiPimenta-Dev",
       "name": "test"

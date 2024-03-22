@@ -23,13 +23,13 @@ class LambdaStack(Stack):
     ) -> None:
 
         name = scope.node.try_get_context("name")
-        super().__init__(scope, f"{name}-CDK", **kwargs)
+        super().__init__(scope, f"{name}-Lambda-Stack", **kwargs)
 
         self.services = Services(self, stage, arns)
 
         # Authorizers
         AuthConfig(self.services)
-        
+
         # Docs
         DocsConfig(scope, self.services)
 

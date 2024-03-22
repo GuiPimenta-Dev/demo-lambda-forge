@@ -9,7 +9,6 @@ class Path:
     id: str
 
 
-
 @dataclass
 class Output:
     id: str

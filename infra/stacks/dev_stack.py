@@ -1,4 +1,3 @@
-
 import aws_cdk as cdk
 from aws_cdk import pipelines as pipelines
 from aws_cdk.pipelines import CodePipelineSource
@@ -21,6 +20,7 @@ class DevStack(cdk.Stack):
                 "Synth",
                 input=source,
                 install_commands=[
+                    "pip install lambda-forge==1.0.188 --extra-index-url https://pypi.org/simple --extra-index-url https://test.pypi.org/simple/",
                     "pip install aws-cdk-lib",
                     "npm install -g aws-cdk",
                 ],

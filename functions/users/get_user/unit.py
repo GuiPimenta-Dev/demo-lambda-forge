@@ -6,12 +6,8 @@ from .main import lambda_handler
 def test_lambda_handler(users_table):
     user_id = str(uuid.uuid4())
     users_table.put_item(Item={"PK": user_id, "name": "Jhon Doe", "age": 30})
-    
-    event = {
-            "pathParameters": {
-                "id": user_id
-            }
-        }
+
+    event = {"pathParameters": {"id": user_id}}
     response = lambda_handler(event, None)
 
     body = json.loads(response["body"])
