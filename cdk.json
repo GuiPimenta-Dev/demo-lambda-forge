@@ -43,7 +43,7 @@
     "name": "Demo-Lambda-Forge",
     "repo": {
       "owner": "GuiPimenta-Dev",
-      "name": "test"
+      "name": "demo-lambda-forge"
     },
     "bucket": "gui-docs",
     "coverage": 80,
