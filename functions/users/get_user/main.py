@@ -8,6 +8,10 @@ import boto3
 class Path:
     id: str
 
+@dataclass
+class Input:
+    pass
+
 
 @dataclass
 class Output:
