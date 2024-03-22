@@ -17,3 +17,4 @@ class ListUsersConfig:
         services.api_gateway.create_endpoint("GET", "/users", function, public=True)
 
         services.dynamo_db.users_table.grant_read_write_data(function)
+#
