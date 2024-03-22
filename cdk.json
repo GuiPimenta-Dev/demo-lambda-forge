@@ -48,13 +48,19 @@
     "bucket": "gui-docs",
     "coverage": 80,
     "dev": {
-      "arns": {}
+      "arns": {
+        "users_table": "arn:aws:dynamodb:us-east-2: 211125768252:table/Dev-Users"
+      }
     },
     "staging": {
-      "arns": {}
+      "arns": {
+        "users_table": "arn:aws:dynamodb:us-east-2: 211125768252:table/Staging-Users"
+      }
     },
     "prod": {
-      "arns": {}
+      "arns": {
+        "users_table": "arn:aws:dynamodb:us-east-2: 211125768252:table/Prod-Users"
+      }
     }
   }
 }
